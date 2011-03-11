@@ -1,30 +1,9 @@
 <h1>Listing products</h1>
 
-<table>
   <tr>
-    <th>Id</th>
-    <th>Title</th>
-    <th>Price</th>
-    <th></th>
-    <th></th>
+     <h4> Purchase Prepaid recharge $10 </h4>    <td><%= link_to 'Place Order', :controller => 'payments'  %></td>
   </tr>
 
-<% @products.each do |product| %>
-  <tr>
-    <td><%= product.id %></td>
-    <td><%= product.title %></td>
-    <td><%= product.price %></td>
-    <td><%= link_to 'Show', product %></td>
-    <td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete %></td>
-    <td><%= link_to 'Place Order', :controller => 'payments'  %></td>
-  </tr>
-  <tr>
-    <td><%= button_to 'Add to Cart', line_items_path(:product_id => product) %></td>    
-  </tr>
-<% end %>
-</table>
 
-<br />
 
-<%= link_to 'New Product', new_product_path %>
+
