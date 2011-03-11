@@ -18,11 +18,16 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.xml
   def show
-    @cart = Cart.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @cart }
+    begin
+      @cart = Cart.find(params[:id])  
+   rescue ActiveRecord::RecordNotFound
+      logger.error "Attempt to access invalid cart #{params[:id]}"
+      redirect_to line_items, :notice => 'Invalid cart'
+   else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @cart }
+      end
     end
   end
 
@@ -77,5 +82,13 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   # DELETE /carts/1.xml
   def destroy
+    @cart = Cart.find(params[:id])
+    @cart.destroy
+    
+    respond_to do |format|
+      format.html { redirect_to(carts_url, :notice => 'Your cart is currently empty.') }
+      format.xml  { render :xml => @line_item, :status => :created, :location => @line_item }
+    end
   end
+  
 end

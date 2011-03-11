@@ -6,7 +6,7 @@
   <% end %>
 </ul>
 
-<%= button_to 'Empty cart', @cart, :method => :destroy, :confirm => 'Are you sure?' %>
+<%= button_to 'Empty cart', @cart, :method => :delete, :confirm => 'Are you sure?' %>
 
 
 <%= link_to 'Edit', edit_cart_path(@cart) %> |
