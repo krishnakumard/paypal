@@ -17,7 +17,8 @@ class PaymentsController < ApplicationController
     end
 
     @address = details_response.address
-  end
+  end  
+
 
   def complete
     purchase = gateway.purchase(1000,
